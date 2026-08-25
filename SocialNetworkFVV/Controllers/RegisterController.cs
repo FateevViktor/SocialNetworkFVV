@@ -1,15 +1,51 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using SocialNetworkFVV.Models;
+using SocialNetworkFVV.Services;
 using SocialNetworkFVV.ViewModels;
 
 namespace SocialNetworkFVV.Controllers
-{
+{    
     public class RegisterController : Controller
     {
+        MyMapping myMapping = new MyMapping();
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        public RegisterController(UserManager<User> userManager, SignInManager<User> signInManager)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
+
         [Route("Register")]
         [HttpGet]
         public IActionResult Register()
         {
             return View("Home/Register");
+        }
+        [Route("Register")]
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = myMapping.GetUserFromRegisterViewModel(model);
+
+                var result = await _userManager.CreateAsync(user, model.PasswordReg);
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, false);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+            }
+            return View("RegisterPart2", model);
         }
 
         [Route("RegisterPart2")]

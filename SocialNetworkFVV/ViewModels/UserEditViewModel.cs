@@ -2,8 +2,12 @@
 
 namespace SocialNetworkFVV.ViewModels
 {
-    public class RegisterViewModel
+    public class UserEditViewModel
     {
+        [Required]
+        [Display(Name = "Id")]
+        public string Id { get; set; } = string.Empty;
+
         [Required]
         [Display(Name = "Имя")]
         public string FirstName { get; set; } = string.Empty;
@@ -13,8 +17,12 @@ namespace SocialNetworkFVV.ViewModels
         public string LastName { get; set; } = string.Empty;
 
         [Required]
+        [Display(Name = "Отчество")]
+        public string MiddleName { get; set; } = string.Empty;
+
+        [Required]
         [Display(Name = "Email")]
-        public string EmailReg { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
 
         [Display(Name = "Дата рождения")]
         [Required(ErrorMessage = "Вам необходимо ввести дату рождения")]
@@ -22,19 +30,15 @@ namespace SocialNetworkFVV.ViewModels
         public DateTime BirthdayDate { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
-        [StringLength(100, ErrorMessage = "Поле {0} должно иметь минимум {2} и максимум {1} символов.", MinimumLength = 5)]
-        public string PasswordReg { get; set; } = string.Empty;
+        [Display(Name = "Статус")]
+        public string Status { get; set; } = string.Empty;
 
         [Required]
-        [Compare("PasswordReg", ErrorMessage = "Пароли не совпадают")]
-        [DataType(DataType.Password)]
-        [Display(Name = "Подтвердить пароль")]
-        public string PasswordConfirm { get; set; } = string.Empty;
+        [Display(Name = "Картинка")]
+        public string Image { get; set; } = string.Empty;
 
         [Required]
-        [Display(Name = "Никнейм")]
-        public string Login { get; set; } = string.Empty;
+        [Display(Name = "Информация обо мне")]
+        public string About { get; set; } = string.Empty;
     }
 }

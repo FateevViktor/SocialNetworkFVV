@@ -3,25 +3,24 @@
 @{
     ViewData["Title"] = "Register";
 }
+<div class="BlockReg">
+    <h4>Регистрация</h4>
+    <form method="get" asp-controller="Register" asp-action="RegisterPart2">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="mrgn">
+            <label asp-for="FirstName"></label><br />
+            <input asp-for="FirstName" class="ipt HomeControlInput" />
+            <span asp-validation-for="FirstName"></span>
+        </div>
+        <div class="mrgn">
+            <label asp-for="LastName"></label><br />
+            <input asp-for="LastName" class="ipt HomeControlInput" />
+            <span asp-validation-for="LastName"></span>
+        </div>
 
-<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
-<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+        <div class="mrgn">
+            <input class="btn HomeControlButton" type="submit" value="Регистрация" />
+        </div>
+    </form>
+</div>
 
-<h2>Регистрация нового пользователя</h2>
-<form method="get" asp-controller="Register" asp-action="RegisterPart2">
-    <div asp-validation-summary="ModelOnly"></div>
-    <div>
-        <label asp-for="FirstName"></label><br />
-        <input asp-for="FirstName" />
-        <span asp-validation-for="FirstName"></span>
-    </div>
-    <div>
-        <label asp-for="LastName"></label><br />
-        <input asp-for="LastName" />
-        <span asp-validation-for="LastName"></span>
-    </div>
-
-    <div>
-        <input type="submit" value="Регистрация" />
-    </div>
-</form>

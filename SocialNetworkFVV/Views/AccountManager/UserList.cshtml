@@ -1,0 +1,50 @@
+﻿@model SocialNetworkFVV.ViewModels.SearchViewModel;
+
+<div class="UserListTable">
+    <div>
+        <div class="righ-align">
+            <form asp-area="" asp-controller="AccountManager" asp-action="UserList">
+                <i class="fa fa-search"></i>
+                <input class="ipt UserListSearch" type="text" placeholder="Поиск" name="search">
+            </form>
+        </div>
+
+        <div class="background-white">
+
+            @if (Model.UserList.Count != 0)
+            {
+                <table class="userlist">
+                    <thead>
+                        <tr><th>Аватар</th><th>ФИО</th><th>Добавить в друзья</th></tr>
+                    </thead>
+                    @foreach (var user in @Model.UserList)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img class="AvatarImgChat" src="/img/fox_avatar.png">
+                                </td>
+                                <td style="min-width:300px">@user.GetFullName()</td>
+                                <!--Кнопка добавления в друзья-->
+                                <td>
+                                    <form asp-controller="AccountManager" asp-action="AddFriend" asp-route-id=@user.Id method="post">
+                                        <button type="submit" class="btn">
+                                            Добавить в друзья
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+                    <tfoot>
+                        <tr><td>Всего пользователей </td><td>@Model.UserList.Count</td></tr>
+                    </tfoot>
+                </table>
+            }
+            else
+            {
+                <label> Поиск не дал результатов.</label>
+            }
+        </div>
+    </div>
+</div>

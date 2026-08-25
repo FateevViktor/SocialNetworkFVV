@@ -1,0 +1,82 @@
+﻿@using SocialNetworkFVV.ViewModels;
+@model MyPageViewModel;
+
+@{
+    ViewData["Title"] = "Пользователь";
+}
+
+<div class="UserProfilHeader">
+    <!-- пишем заголовок и пояснительный текст -->
+    <h2>@Model?.LastName @Model?.FirstName @Model?.MiddleName</h2>
+    <p>Ваш профиль</p>
+</div>
+
+<div class="UserProfil">      
+    <div class="UserProfilMainLeft">
+        <form asp-controller="AccountManager" asp-action="UserEdit" method="get">
+            <img class="UserProfilImg" src="/img/fox_avatar.png">
+            <button type="submit" class="btn MyPageEditControlButton">
+                Редактировать профиль
+            </button>
+        </form>
+    </div>
+
+    <div class="UserProfilMainRight">
+        <!--Информация обо мне-->
+        <p>Логин: @Model?.Login</p>
+        <p>ФИО: @Model?.LastName @Model?.FirstName @Model?.MiddleName</p>
+        <p>Статус: @Model?.Status</p>
+        <p>Дата рождения: @Model?.BirthdayDate.ToShortDateString()</p>
+        <p>О себе: @Model?.About</p>
+        <p>Email: @Model?.Email</p>
+
+        <!--Информация о друзьях-->
+        <div class="UserProfilFriends">
+            <h4>Друзья</h4>
+            @if (@Model?.Friends.Count != 0)
+            {
+                <div class="UserListAvatar">
+                    @foreach (var friend in @Model.Friends)
+                    {
+                        <div class="UserAvatar">
+                            <div>
+                                <img class="AvatarImg" src="/img/fox_avatar.png">
+                            </div>
+                            <div class="AvatarText">
+                                @friend.GetFullName()
+                            </div>
+                            <!--Кнопка чата-->
+                            <div>
+                                <form asp-controller="AccountManager" asp-action="Chat" asp-route-id="@friend.Id" method="post">
+                                    <button type="submit" class="btn AvatarControlButton">
+                                        Чат
+                                    </button>
+                                </form>
+                            </div>
+                            <!--Кнопка удаления из друзей-->
+                            <div>
+                                <form asp-controller="AccountManager" asp-action="DeleteFriend" asp-route-id="@friend.Id" method="post">
+                                    <button type="submit" class="btn AvatarControlButton">
+                                        Удалить из друзей
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <label> У вас нет друзей</label>
+            }
+        </div>
+        <!--Найти друга-->
+        <div class="UserPrifilFindFriends">
+            <form asp-controller="AccountManager" asp-action="UserList" method="get">
+                <button type="submit" class="btn MyPageFindFriendsControlButton">
+                    Найти друга
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

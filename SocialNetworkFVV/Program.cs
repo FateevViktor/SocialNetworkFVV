@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SocialNetworkFVV.Data;
+using SocialNetworkFVV.Data.Repos;
 using SocialNetworkFVV.Models;
-using SocialNetworkFVV.Services;
 
 namespace SocialNetworkFVV
 {
@@ -14,6 +15,10 @@ namespace SocialNetworkFVV
             var connection = builder.Configuration.GetConnectionString("DefaultConnection");
             //Контекст БД
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
+            
+            builder.Services.AddScoped<IFriendsRepository, FriendsRepository>(); //Добавляем службу друзей
+            builder.Services.AddScoped<IMessageRepository, MessageRepository>(); //Добавим службу сообщений
+
             //Добавляем сервис аутентификации
             builder.Services.AddAuthentication();
             //определить нашу модель работы с пользователями

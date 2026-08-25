@@ -1,0 +1,87 @@
+﻿@model SocialNetworkFVV.ViewModels.ChatViewModel;
+<div class="Chat">
+    <div class="background-white">
+        <!--Кнопка назад-->
+        <div>
+            <form method="get" asp-controller="AccountManager" asp-action="MyPage">
+                <input class="btn ChatBackControlButton" type="submit" value="Назад" />
+            </form>
+        </div>
+
+        <!--<h4 class="center">Чат @Model.You.FirstName и  @Model.ToWhom.FirstName</h4>-->
+
+        @if (Model.History.Count != 0)
+        {
+            <table class="userlist">
+                <thead>
+                    <tr><th>аватар</th><th>Сообщение</th><th>удалить</th></tr>
+                </thead>
+                @foreach (var item in Model.History)
+                {
+                    <tbody>
+                        <tr>
+                            <!--картинка-->
+                            <td>
+                                <div >
+                                    <img class="AvatarImgChat" src="/img/fox_avatar.png">
+                                </div>
+                            </td>
+                            <!--сообщение-->
+                            <td style="min-width:300px">
+                                <!--информация об отправителе-->
+                                <div class="InfoSenderText">
+                                    <b>
+                                        @item.Sender.FirstName;
+                                        @item.MessageDateTime.ToString();
+                                     </b>
+                                </div>
+                                <div>
+                                    @item.Text
+                                </div>
+                            </td>
+                            <!--удалить сообщение-->
+                            <td>
+                                <!--удалять можно только свои сообщения-->
+                                @if(item.SenderId==Model.You.Id)
+                                {
+                                    <form asp-controller="AccountManager" asp-action="DeleteMessage" asp-route-id="@item.MessageId" method="post">
+                                        <button type="submit" class="btn AvatarControlButton">
+                                            Удалить
+                                        </button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+                <tfoot>
+                    <tr><td>Всего сообщений </td><td>@Model.History.Count</td></tr>
+                </tfoot>
+            </table>
+        }
+        else
+        {
+            <div>
+                <label> У вас пока нет сообщений</label>
+            </div>
+        }
+
+        <!--Отправить сообщение-->
+        <div class="lined-block">
+            <label class="gray-text">Новое сообщение</label>
+
+            <form class="frm" method="post" asp-controller="AccountManager" asp-action="NewMessage" asp-route-id="@Model.ToWhom.Id">
+                <div asp-validation-summary="ModelOnly"></div>
+                <div>
+                    <div>
+                        <input asp-for="NewMessage.Text" class="ipt ChatSendMessageInput" type="text" />
+                    </div>
+                    <div class="center">
+                        <input class="btn ChatSendMessageControlButton" type="submit" value="Отправить" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

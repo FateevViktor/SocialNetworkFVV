@@ -1,30 +1,301 @@
-﻿.main {
-    -ms-flex: 30%; /* IE10 */
-    flex: 30%;
-    padding: 20px;
+﻿/* Глобальные переменные */
+:root {
+    --body-color-background: rgb(217, 238, 250);
+    --body-color-text: rgb(0, 50, 90);
+    --header-color-background: rgb(0, 113, 179);
+    --header-color-text: rgb(255, 255, 255);
 }
 
+* { /*У всех элементов отсутствуют отступы*/
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    /*width: 100%;*/
+    font-family: Arial, sans-serif;
+    color: var(--body-color-text);
+}
+
+header {
+    padding: 0px;
+    border-bottom: 2px solid rgb(0,0,0);
+    margin: 0px;
+    background-color: var(--header-color-background);
+}
+
+main {
+    padding: 0px;
+    margin: 0px;
+    background-color: var(--body-color-background);
+    color: var(--body-color-text);
+    /*мои правки по высоте*/
+    flex-grow: 1; /* Это растянет блок на всё доступное место */
+}
+
+footer {
+    /*position: fixed;*/
+    bottom: 0px;
+    text-align: center;
+    /*width: 100%;*/
+    padding-top: 15px;
+    height: 35px;
+    color: var(--header-color-text);
+    background-color: var(--header-color-background);
+    margin: 0px;
+
+    border-top: 2px solid rgb(0,0,0);
+    /*
+    display: flex;
+    justify-content: center;
+    background-color: var(--header-color-background);
+        */
+}
+
+.HomeMain {
+    width: 30%;
+    /*flex: 40%;*/
+    padding: 20px;
+    background-color: var(--body-color-background);
+    color: var(--body-color-text);
+}
+.BlockLogin {
+    margin-top: 20px;
+}
+.BlockReg {
+    margin-top: 20px;
+}
 
 .side {
-    -ms-flex: 70%; /* IE10 */
-    flex: 70%;
+    width: 70%;
+    /*flex: 60%;*/
     padding: 20px;
 }
 
 .row {
-    display: -ms-flexbox; /* IE10 */
+    /*
     display: flex;
-    -ms-flex-wrap: wrap; /* IE10 */
     flex-wrap: wrap;
-}
-
-.footer {
-    padding: 20px;
-    text-align: center;
+        */
+    display: flex;
+    /*flex-direction: row;*/
+    justify-content: space-around;
 }
 
 .topnav {
-    padding: 20px;
+    padding: 10px;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--header-color-background);
+    color: var(--header-color-text);
+}
+
+.topnav a{
+    background-color: var(--header-color-background);
+    color: var(--header-color-text);
+}
+
+.main-img {
+    width: 100%;
+    max-width: max-content;
+}
+
+.background-white {
+    background-color: var(--body-color-background);
+    color: var(--body-color-text);
+    /*width: 100%;*/
+    padding: 0px;
+    margin: 0px;
+}
+
+.mrgn {
+    /*width: 500px;*/
+    width: 80%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.UserProfil {
+    display: flex;
+    justify-content: space-around;
+}
+.UserProfilHeader {
     text-align: center;
+    /*
+    border-style: dashed;
+    border-width: 2px;
+    border-color: blue;*/
+}
+.UserProfilMainLeft {
+    width: 50%;
+    /*border-style: dashed;
+    border-width: 2px;
+    border-color: blue;*/
+}
+.UserProfilFriends {
+    margin-top: 20px;
+    border-top-style: dotted;
+}
+.UserPrifilFindFriends {
+    margin-top: 20px;
+    border-top-style: dotted;
+}
+/*Вписываем картинку в контейнер div*/
+.UserProfilImg {
+    width: 100%;
+    height: auto;
+}
+.userlist thead th {
+    border: var(--header-color-text) thin solid;
+    padding: 4px;
+    color: var(--header-color-text);
+    background-color: var(--header-color-background);
+}
+.userlist tbody td {
+    border: var(--body-color-text) thin solid;
+    padding: 4px;
+    color: var(--body-color-text);
+    background-color: var(--body-color-background);
+    /*min-width: 300px;*/
+}
+.userlist tbody td {
+    border: var(--body-color-text) thin solid;
+    padding: 4px;
+    color: var(--body-color-text);
+    background-color: var(--body-color-background);
+}
+.UserListAvatar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 10px; /* Отступ 10 пикселей */
+}
+.UserAvatar {
+    width: 150px;
+    height: auto;
+}
+.AvatarImg {
+    width: 100%;
+    height: auto;
+}
+.AvatarImgChat {
+    width: 30px;
+    height: auto;
+}
+.AvatarText {
+    overflow-wrap: break-word;
+    margin: 0px;
+    padding: 0px;
+}
+.AvatarControlButton {
+    width: 100%;
+    margin-top: 5px;
+}
+.HomeControlButton {
+    width: 100%;
+    margin-top: 5px;
+    max-width: 150px;
+}
+.HomeControlInput {
+    width: 100%;
+    margin-top: 5px;
+    max-width: 150px;
+}
+.MyPageEditControlButton {
+    width: 100%;
+    margin-top: 5px;
+}
+.MyPageFindFriendsControlButton {
+    margin-top: 20px;
+}
+.ChatBackControlButton {
+    margin-top: 10px;
+}
+.ChatSendMessageControlButton {
+    margin-top: 10px;
+}
+.UserEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.UserEditControlInput {
+    width: 100%;
+    margin-top: 5px;
+    max-width: 300px;
+}
+.UserEditControlButton {
+    width: 100%;
+    margin-top: 5px;
+    max-width: 300px;
+}
+/*Общие настройки кнопки*/
+.btn {
+    padding: 0.2em 0.2em; /* Поля по вертикали и горизонтали */
+    background-color: var(--header-color-background);
+    font-size: 1em; /* Размер текста */
+    color: var(--header-color-text); /* Цвет текста */
+    border: 2px solid var(--body-color-text); /* Параметры рамки */
+    border-radius: 0.4em; /* Радиус скругления */
+}
+.btnInvers {
+    padding: 0.2em 0.2em; /* Поля по вертикали и горизонтали */
+    background-color: var(--body-color-background);
+    font-size: 1em; /* Размер текста */
+    color: var(--body-color-text); /* Цвет текста */
+    border: 2px solid var(--body-color-text); /* Параметры рамки */
+    border-radius: 0.4em; /* Радиус скругления */
+}
+/*Общие настройки input - поля ввода*/
+.ipt {
+    padding: 0.2em 0.2em;
+    border: 1px solid var(--body-color-text); /* Параметры рамки */
+    border-radius: 0.4em; /* Радиус скругления */
+    background-color: var(--header-color-text);
+}
+input[type=text]:focus {
+    border: 3px solid var(--body-color-text); /* Параметры рамки */
+}
+input[type=password]:focus {
+    border: 3px solid var(--body-color-text); /* Параметры рамки */
+}
+input[type=date]:focus {
+    border: 3px solid var(--body-color-text); /* Параметры рамки */
+}
+.InfoSenderText {
+    font-size: 1em; /* Размер текста */
+    color: var(--header-color-background); /* Цвет текста */
+}
+.Register2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.UserListTable {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.UserListSearch {
+    margin-top: 20px;
+    width: 100%;
+}
+.ChatSendMessageInput {
+    margin-top: 5px;
     width: 100%;
 }

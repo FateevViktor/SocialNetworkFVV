@@ -1,0 +1,61 @@
+﻿@model SocialNetworkFVV.ViewModels.UserEditViewModel
+
+@{
+    ViewData["Title"] = "UserEdit";
+}
+<div class="UserEdit">
+    <div>
+        <h2>Редактирование пользователя</h2>
+        <form method="post" asp-controller="AccountManager" asp-action="UpdateUserEdit">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div hidden>
+                <label asp-for="Id"></label><br />
+                <input asp-for="Id" class="ipt UserEditControlInput" />
+                <span asp-validation-for="Id"></span>
+            </div>
+            <div>
+                <label asp-for="FirstName"></label><br />
+                <input asp-for="FirstName" class="ipt UserEditControlInput" />
+                <span asp-validation-for="FirstName"></span>
+            </div>
+            <div>
+                <label asp-for="LastName"></label><br />
+                <input asp-for="LastName" class="ipt UserEditControlInput" />
+                <span asp-validation-for="LastName"></span>
+            </div>
+            <div>
+                <label asp-for="MiddleName"></label><br />
+                <input asp-for="MiddleName" class="ipt UserEditControlInput" />
+                <span asp-validation-for="MiddleName"></span>
+            </div>
+            <div>
+                <label asp-for="Email"></label><br />
+                <input asp-for="Email" class="ipt UserEditControlInput" />
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div>
+                <label asp-for="BirthdayDate"></label><br />
+                <input asp-for="BirthdayDate" class="ipt UserEditControlInput" />
+                <span asp-validation-for="BirthdayDate"></span>
+            </div>
+            <div>
+                <label asp-for="Status"></label><br />
+                <input asp-for="Status" class="ipt UserEditControlInput" />
+                <span asp-validation-for="Status"></span>
+            </div>
+            <div>
+                <label asp-for="Image"></label><br />
+                <input asp-for="Image" class="ipt UserEditControlInput" />
+                <span asp-validation-for="Image"></span>
+            </div>
+            <div>
+                <label asp-for="About"></label><br />
+                <input asp-for="About" class="ipt UserEditControlInput" />
+                <span asp-validation-for="About"></span>
+            </div>
+            <div>
+                <input type="submit" value="Сохранить" class="btn UserEditControlButton" />
+            </div>
+        </form>
+    </div>
+</div>
